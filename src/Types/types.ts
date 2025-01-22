@@ -8,7 +8,7 @@ export interface Product {
     id: number
     type: string
     value: number
-    expiredAt: string
+    expiredAt: string | any
   }[]
 }
 

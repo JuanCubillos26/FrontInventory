@@ -17,15 +17,11 @@ function ProductsList() {
       .then(data => setProducts(data.data))
   }, [])
 
-  const addToInventory = (e: React.FormEvent) => {
-    e.preventDefault()
-
+  const addToInventory = () => {
     const selectedProduct = products.find(p => p.id === inventory.productId)
-
     if (!selectedProduct) {
       return
     }
-
     if (selectedProduct.stock > 0 || inventory.value >= 0) {
       fetch(`${API_URL}inventory`, {
         method: 'POST',
@@ -84,6 +80,7 @@ function ProductsList() {
           <input
             type="date"
             value={inventory.expiredAt}
+            required
             min={new Date().toISOString().split('T')[0]}
             onChange={e =>
               setInventory({
