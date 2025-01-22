@@ -14,12 +14,7 @@ function InventoryAdd() {
       .catch(error => console.error('Error fetching products:', error))
   }, [setProducts])
 
-  const getColorForExpiration = (daysRemaining: number) => {
-    if (daysRemaining <= 0) return 'bg-red-500 text-white'
-    if (daysRemaining <= 3) return 'bg-orange-500 text-white'
-    return 'bg-green-500 text-white'
-  }
-
+  // Filtramos el inventario de cada producto por fecha de vencimiento
   const filterInventoryByDate = (inventory: any[], filterDate: string) => {
     if (!filterDate) return inventory
     return inventory.filter(inventoryItem =>
@@ -74,17 +69,10 @@ function InventoryAdd() {
               <p className="text-gray-600">Stock: {product.stock}</p>
               <ul className="mt-4 space-y-2">
                 {filteredInventory.map(inventoryItem => {
-                  const expirationDate = new Date(inventoryItem.expiredAt)
-                  const daysRemaining = Math.ceil(
-                    (expirationDate.getTime() - new Date().getTime()) /
-                      (1000 * 3600 * 24)
-                  )
-                  const color = getColorForExpiration(daysRemaining)
-
                   return (
                     <li
                       key={inventoryItem.id}
-                      className={`p-2 rounded-md ${color}`}
+                      className="p-2 rounded-md bg-green-500 text-white"
                     >
                       Fecha de vencimiento:{' '}
                       {formatDate(inventoryItem.expiredAt)} - Stock:{' '}
