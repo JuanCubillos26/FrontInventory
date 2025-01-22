@@ -22,6 +22,18 @@ function InventoryAdd() {
     )
   }
 
+  // Función para determinar el color según la fecha de vencimiento
+  const getColorForExpiration = (expirationDate: string) => {
+    const date = new Date(expirationDate)
+    const today = new Date()
+    const timeDifference = date.getTime() - today.getTime()
+    const daysRemaining = Math.ceil(timeDifference / (1000 * 3600 * 24))
+
+    if (daysRemaining <= 0) return 'bg-red-500 text-white'
+    if (daysRemaining <= 3) return 'bg-orange-500 text-white'
+    return 'bg-green-500 text-white'
+  }
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     return (
@@ -69,10 +81,12 @@ function InventoryAdd() {
               <p className="text-gray-600">Stock: {product.stock}</p>
               <ul className="mt-4 space-y-2">
                 {filteredInventory.map(inventoryItem => {
+                  const color = getColorForExpiration(inventoryItem.expiredAt)
+
                   return (
                     <li
                       key={inventoryItem.id}
-                      className="p-2 rounded-md bg-green-500 text-white"
+                      className={`p-2 rounded-md ${color}`}
                     >
                       Fecha de vencimiento:{' '}
                       {formatDate(inventoryItem.expiredAt)} - Stock:{' '}
