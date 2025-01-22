@@ -20,7 +20,6 @@ function InventoryAdd() {
     return 'bg-green-500 text-white'
   }
 
-  // Filtramos el inventario de cada producto por fecha de vencimiento
   const filterInventoryByDate = (inventory: any[], filterDate: string) => {
     if (!filterDate) return inventory
     return inventory.filter(inventoryItem =>
@@ -60,13 +59,11 @@ function InventoryAdd() {
 
       <ul className="space-y-4">
         {products.map(product => {
-          // Filtramos el inventario de cada producto
           const filteredInventory = filterInventoryByDate(
             product.inventory,
             filterDate
           )
 
-          // Si no hay elementos filtrados, no mostramos el producto
           if (filteredInventory.length === 0) return null
 
           return (
