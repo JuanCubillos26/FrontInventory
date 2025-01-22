@@ -4,11 +4,17 @@ import ProductsList from './Components/ProductsList'
 
 function App() {
   return (
-    <>
-      <AddProduct />
-      <ProductsList />
-      <InventoryAdd />
-    </>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+      <div className="col-span-1">
+        <AddProduct />
+      </div>
+      <div className="col-span-1">
+        <ProductsList />
+      </div>
+      <div className="col-span-1">
+        <InventoryAdd />
+      </div>
+    </div>
   )
 }
 

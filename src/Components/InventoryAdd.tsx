@@ -13,7 +13,6 @@ function InventoryAdd() {
       .then(data => setProducts(data.data))
       .catch(error => console.error('Error fetching products:', error))
   }, [setProducts])
-  console.log(products)
 
   const getColorForExpiration = (daysRemaining: number) => {
     if (daysRemaining <= 0) return 'bg-red-500 text-white'

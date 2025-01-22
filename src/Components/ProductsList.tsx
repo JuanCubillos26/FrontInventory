@@ -53,7 +53,7 @@ function ProductsList() {
       <h3 className="text-xl font-semibold text-gray-800 mb-4">
         Seleccione el producto creado
       </h3>
-      <form onSubmit={addToInventory} className="space-y-4">
+      <form onSubmit={addToInventory} className="space-y-6">
         <div>
           <label className="block text-gray-700">Producto:</label>
           <select
@@ -113,10 +113,11 @@ function ProductsList() {
         >
           Agregue o Elimine el producto al Inventario
         </button>
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+
+        <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-4">
           Gestión de Inventario
         </h2>
-        <div className="mb-6">
+        <div>
           <ul className="space-y-4">
             {products.map(product => (
               <li key={product.id} className="p-4 bg-gray-100 rounded-md">
