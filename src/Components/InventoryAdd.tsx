@@ -67,6 +67,7 @@ function InventoryAdd() {
                 {product.name}
               </h3>
               <p className="text-gray-600">Estado: {product.status}</p>
+              <p className="text-gray-600">Stock: {product.stock}</p>
               <ul className="mt-4 space-y-2">
                 {product.inventory.map(inventoryItem => {
                   const expirationDate = new Date(inventoryItem.expiredAt)

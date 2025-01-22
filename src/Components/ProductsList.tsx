@@ -122,7 +122,7 @@ function ProductsList() {
             {products.map(product => (
               <li key={product.id} className="p-4 bg-gray-100 rounded-md">
                 <strong className="text-lg">{product.name}</strong>
-                <p>Stock: {product.stock}</p>
+                <p>Estado: {product.status}</p>
               </li>
             ))}
           </ul>
