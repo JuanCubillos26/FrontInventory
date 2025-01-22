@@ -1,50 +1,18 @@
-# React + TypeScript + Vite
+## Decisiones tecnicas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Para el presente proyecto se decidio por optar con la construcion del front utilizando React con Vite como bundler para una experiencia de desarrollo rapido. la aplicacion se conecta al backend desarrollado con NestJS y PostgreSQL para gestionar la base de datos
 
-Currently, two official plugins are available:
+1. Funcionalidades:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+La aplicacion permite a los usuarios gestionar productos en un inventario asigando fechas de vencimiento, de manera que los productos vencidos sean facilmente identificables.
 
-## Expanding the ESLint configuration
+2. Caracterisitcas Principales
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Vite como Blunder y herramienta de desarrollo
+Consumo de API Restul con axios
+Uso de formulario controlado
+CSS con Tailwind para la creacion de interfaces rapidas y flexibles.
 
-- Configure the top-level `parserOptions` property like this:
+Las decisiones técnicas tomadas para este proyecto se centraron en la simplicidad, la velocidad de desarrollo y el rendimiento. Se eligieron herramientas modernas y eficientes como React, Vite y Zustand para asegurar una experiencia de desarrollo rápida y una experiencia de usuario fluida. Además, se optó por usar herramientas nativas de CSS con Tailwind para simplificar el proyecto y evitar dependencias innecesarias.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Toda la estructura del proyecto estaba dividida por componentes, servicios, store y tipada, con el fin de mantener un codigo de manera modular, claro y escalable.
