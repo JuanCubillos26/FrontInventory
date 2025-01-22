@@ -14,7 +14,6 @@ function InventoryAdd() {
       .catch(error => console.error('Error fetching products:', error))
   }, [setProducts])
 
-  // Filtramos el inventario de cada producto por fecha de vencimiento
   const filterInventoryByDate = (inventory: any[], filterDate: string) => {
     if (!filterDate) return inventory
     return inventory.filter(inventoryItem =>
@@ -22,7 +21,6 @@ function InventoryAdd() {
     )
   }
 
-  // Función para determinar el color según la fecha de vencimiento
   const getColorForExpiration = (expirationDate: string) => {
     const date = new Date(expirationDate)
     const today = new Date()
