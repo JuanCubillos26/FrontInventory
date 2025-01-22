@@ -20,13 +20,12 @@ function InventoryAdd() {
     return 'bg-green-500 text-white'
   }
 
-  const filterProductsByDate = (products: Product[], filterDate: string) => {
-    if (!filterDate) return products
-    return products.filter(product => {
-      return product.inventory.some(inventoryItem =>
-        inventoryItem.expiredAt.includes(filterDate)
-      )
-    })
+  // Filtramos el inventario de cada producto por fecha de vencimiento
+  const filterInventoryByDate = (inventory: any[], filterDate: string) => {
+    if (!filterDate) return inventory
+    return inventory.filter(inventoryItem =>
+      inventoryItem.expiredAt.includes(filterDate)
+    )
   }
 
   const formatDate = (dateString: string) => {
@@ -60,16 +59,24 @@ function InventoryAdd() {
       </div>
 
       <ul className="space-y-4">
-        {filterProductsByDate(products, filterDate).map(product => {
+        {products.map(product => {
+          // Filtramos el inventario de cada producto
+          const filteredInventory = filterInventoryByDate(
+            product.inventory,
+            filterDate
+          )
+
+          // Si no hay elementos filtrados, no mostramos el producto
+          if (filteredInventory.length === 0) return null
+
           return (
             <li key={product.id} className="p-4 bg-gray-100 rounded-md">
               <h3 className="font-semibold text-lg text-gray-800">
                 {product.name}
               </h3>
-              <p className="text-gray-600">Estado: {product.status}</p>
               <p className="text-gray-600">Stock: {product.stock}</p>
               <ul className="mt-4 space-y-2">
-                {product.inventory.map(inventoryItem => {
+                {filteredInventory.map(inventoryItem => {
                   const expirationDate = new Date(inventoryItem.expiredAt)
                   const daysRemaining = Math.ceil(
                     (expirationDate.getTime() - new Date().getTime()) /
