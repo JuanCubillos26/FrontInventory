@@ -8,11 +8,18 @@ function InventoryAdd() {
   const API_URL = 'http://localhost:3000/'
 
   useEffect(() => {
-    fetch(`${API_URL}products/active`)
-      .then(response => response.json())
-      .then(data => setProducts(data.data))
-      .catch(error => console.error('Error fetching products:', error))
-  }, [setProducts])
+    const fetchActiveProducts = () => {
+      fetch(`${API_URL}products/active`)
+        .then(response => response.json())
+        .then(data => setProducts(data.data))
+        .catch(error => console.error('Error fetching products:', error))
+    }
+
+    fetchActiveProducts()
+    const interval = setInterval(fetchActiveProducts, 5000) //
+
+    return () => clearInterval(interval)
+  }, [])
 
   const filterInventoryByDate = (inventory: any[], filterDate: string) => {
     if (!filterDate) return inventory

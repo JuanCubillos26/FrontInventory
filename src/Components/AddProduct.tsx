@@ -6,6 +6,7 @@ function AddProduct() {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [error, setError] = useState<string>('')
+
   const handleAddProduct = () => {
     if (!name || !description) {
       setError('Ambos campos (nombre y descripción) son obligatorios.')

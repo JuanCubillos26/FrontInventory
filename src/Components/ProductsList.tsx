@@ -11,17 +11,24 @@ function ProductsList() {
 
   const API_URL = 'http://localhost:3000/'
 
-  useEffect(() => {
+  const fetchProducts = () => {
     fetch(`${API_URL}products`)
       .then(response => response.json())
       .then(data => setProducts(data.data))
+      .catch(error => console.error('Error fetching products:', error))
+  }
+
+  useEffect(() => {
+    fetchProducts()
   }, [])
 
-  const addToInventory = () => {
+  const addToInventory = (e: React.FormEvent) => {
+    e.preventDefault() // Evita el comportamiento predeterminado del formulario
     const selectedProduct = products.find(p => p.id === inventory.productId)
     if (!selectedProduct) {
       return
     }
+
     if (selectedProduct.stock > 0 || inventory.value >= 0) {
       fetch(`${API_URL}inventory`, {
         method: 'POST',
@@ -31,13 +38,8 @@ function ProductsList() {
         body: JSON.stringify(inventory),
       })
         .then(() => {
-          setProducts(product =>
-            product.map(product =>
-              product.id === inventory.productId
-                ? { ...product, stock: product.stock + inventory.value }
-                : product
-            )
-          )
+          // Refresca la lista de productos después de agregar
+          fetchProducts()
           setInventory({
             productId: 0,
             value: 0,
